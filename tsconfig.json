@@ -5,6 +5,7 @@
       "strictNullChecks": true,
       "noImplicitAny": true,
       "esModuleInterop": true,
+      "outDir": "dist"
     },
     "files": ["src/custom.d.ts"],
     "include": ["src"]

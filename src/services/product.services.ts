@@ -32,4 +32,12 @@ export const ProductServices = {
             throw new Error(error);
         }
     },
+    async deleteProduct(id: string) {
+        try {
+            const product = await Product.findByIdAndDelete(id);
+            return product;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }

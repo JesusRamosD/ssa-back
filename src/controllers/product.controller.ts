@@ -34,3 +34,14 @@ export const getProductById = async (req: Request<{ id: string }, {}, {}, {}>, r
     }
 }
 
+
+export const deleteProductById = async (req: Request<{ id: string }, {}, {}, {}>, res: Response) => {
+    try {
+        const { id } = req.params;
+        const product = await ProductServices.deleteProduct(id);
+        return res.status(200).json(product);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send("Bad request");
+    }
+};

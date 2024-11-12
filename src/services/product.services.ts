@@ -18,7 +18,8 @@ export const ProductServices = {
     async getProductById(id: string) {
         try {
             const product = await Product.findById(id);
-            return product;
+            const quantity = await StockServices.getStocksByProductId(id);
+            return { ...product?.toJSON(), stockQuantity: quantity.reduce((acc, curr) => acc + curr.quantity, 0) };
         } catch (error) {
             throw new Error(error);
         }

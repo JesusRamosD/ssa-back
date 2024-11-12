@@ -39,5 +39,15 @@ export const StockServices = {
         } catch (error) {
             throw new Error(error);
         }
+    },
+    async deleteStocksByProductId(id: string) {
+        try {
+            const stocks = Stock.deleteMany({
+                product_id: id
+            });
+            return stocks;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }

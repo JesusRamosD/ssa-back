@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { IProduct } from '../models/Product';
 import { ProductServices } from '../services/product.services';
+import { StockServices } from '../services/stock.services';
 
 export const createProduct = async (req: Request<{}, {}, IProduct, {}>, res: Response) => {
     try {
@@ -39,6 +40,7 @@ export const deleteProductById = async (req: Request<{ id: string }, {}, {}, {}>
     try {
         const { id } = req.params;
         const product = await ProductServices.deleteProduct(id);
+        await StockServices.deleteStocksByProductId(id);
         return res.status(200).json(product);
     } catch (error) {
         console.log(error);
